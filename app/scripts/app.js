@@ -1,19 +1,22 @@
 'use strict';
-
-
-  angular.module('contantsListApp', [
+angular.module('contantsListApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
   'ui.router'
-])
-  .config(function ($stateProvider, $urlRouterProvider) {
-    //delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    $urlRouterProvider.otherwise('/');
-    $stateProvider
-      .state('index', {
-        url: '/',
-        templateUrl: 'views/main.html',
-        controller:'MainCtrl'
-      });
+]).config(function ($stateProvider, $urlRouterProvider) {
+  $stateProvider.state('index', {
+    //url: '/',
+    templateUrl: 'views/main.html',
+    controller: 'MainCtrl'
+  }).state('/contact/list', {
+    url: '/',
+    templateUrl: 'views/contact/list.html',
+    controller: 'ContactListCtrl'
+  }).state('/contact/details', {
+    url: '/contact/:id',
+    templateUrl: 'views/contact/details.html',
+    controller: 'ContactDetailsCtrl'
   });
+  $urlRouterProvider.otherwise('/contact/list');
+});
