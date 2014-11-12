@@ -1,3 +1,8 @@
 <ul>
-	<li></li>
+	<li ng-repeat="contact in contactsList">
+		<img src="{{contact.profile_image_url}}" />
+		<h2>@{{contact.screen_name}}</h2>
+		<small>{{contact.name}}</small>
+		<p>{{contact.description}}</p>
+	</li>
 </ul>

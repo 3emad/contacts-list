@@ -6,11 +6,11 @@ angular.module('contantsListApp', [
   'ui.router'
 ]).config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state('index', {
-    //url: '/',
+    url: '/',
     templateUrl: 'views/main.html',
     controller: 'MainCtrl'
   }).state('/contact/list', {
-    url: '/',
+    url: '/contact/list',
     templateUrl: 'views/contact/list.html',
     controller: 'ContactListCtrl'
   }).state('/contact/details', {
@@ -18,5 +18,5 @@ angular.module('contantsListApp', [
     templateUrl: 'views/contact/details.html',
     controller: 'ContactDetailsCtrl'
   });
-  $urlRouterProvider.otherwise('/contact/list');
+  $urlRouterProvider.otherwise('/');
 });

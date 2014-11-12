@@ -28,7 +28,10 @@ gulp.task('browser-sync', function() {
     browserSync({
         server: {
             baseDir: "app"
-        }
+        },
+        open: false,
+        host: "192.168.2.21",
+        port: 8080
     });
 });
 
@@ -69,7 +72,8 @@ gulp.task('images', function() {
 });
 
 gulp.task('clean', function(cb) {
-    del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
+    //del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
+    del('dist/*', cb)
 });
 
 gulp.task('default', ['clean'], function() {
@@ -89,5 +93,4 @@ gulp.task('watch', ['browser-sync'] ,function() {
   livereload.listen();
   // Watch any files in dist/, reload on change
   gulp.watch(['dist/**']).on('change', livereload.changed);
-
 });
