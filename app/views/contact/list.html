@@ -1,8 +1,12 @@
 <ul>
-	<li ng-repeat="contact in contactsList">
-		<img src="{{contact.profile_image_url}}" />
-		<h2>@{{contact.screen_name}}</h2>
-		<small>{{contact.name}}</small>
-		<p>{{contact.description}}</p>
+	Search: <input ng-model="searchText">
+	<li ng-repeat="contact in contactsList | filter:searchText">
+		<a href="#contact/{{$index}}"><h3>{{contact.name}}</h3></a>
+		<small>
+			{{contact.company_name}} 
+			{{contact.address}} - {{contact.city}}
+			{{contact.province}} - {{contact.postal}}
+			{{contact.country}}
+		</small>
 	</li>
 </ul>

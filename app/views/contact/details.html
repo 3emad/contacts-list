@@ -1,1 +1,11 @@
-<p>This is the contact/details view.</p>
+<form ng-model-options="{ updateOn: 'submit' }">
+    <div>
+        <label>Name:</label>
+        <input ng-model="contact.name" />
+    </div>
+
+    <label>Company Name:</label>
+    {{contact.company_name}} {{contact.address}} - {{contact.city}} {{contact.province}} - {{contact.postal}} {{contact.country}}
+    </small>
+    <input name="submit" type="submit" value="save" />
+</form>
