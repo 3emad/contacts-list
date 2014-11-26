@@ -1,0 +1,10 @@
+<label for="{{labelClean}}">{{label}}</label>
+<input name="{{labelClean}}" type="input" ng-model="ngModel" required />
+
+<span class="label label-danger" ng-show="Form.{{labelClean}}.$error.required">Required!</span>
+<span class="label label-danger" ng-show="Form.$error.
+{{labelClean}}">Invalid {{labelClean}}!</span>
+
+<pre>
+{{Form | json}}
+</pre>

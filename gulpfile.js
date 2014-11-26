@@ -61,7 +61,7 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
     return gulp.src('app/scripts/**/*.js')
-        .pipe(fixmyjs()) // fix my js
+        //.pipe(fixmyjs()) // fix my js
         .pipe(gulp.dest("app/scripts"))
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
