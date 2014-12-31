@@ -1,10 +1,6 @@
 <form name="detailsForm" ng-model-options="{ updateOn: 'submit' }" ng-submit="save()" novalidate>
     <form-elem type="input" label="Name:" ng-model="contact.name"></form-elem>
-
-    <!-- <form-elem type="textarea" label="Address:" ng-model="contact.address"></form-elem>
-
-<form-elem type="tel" label="Telephone:" ng-model="contact.phone"></form-elem>
- -->
-
+	<form-elem type="tel" label="Telephone:" ng-model="contact.phone"></form-elem>
+    <form-elem type="textarea" label="Address:" ng-model="contact.address"></form-elem>
     <input name="submit" type="submit" value="save" />
 </form>

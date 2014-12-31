@@ -1,4 +1,6 @@
-<div>
-    <label>{{label}}</label>
-    <textarea ng-model="ngModel"></textarea>
+<div class="form-element-wrapper form-{{type}}">
+	<label for="{{labelClean}}">{{label}}</label>
+	<textarea name="{{labelClean}}" ng-model="ngModel" required></textarea>
+
+	<span class="label label-danger" ng-show="Form.{{labelClean}}.$error.required">Required!</span>
 </div>

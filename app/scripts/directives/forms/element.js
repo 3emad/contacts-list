@@ -46,7 +46,7 @@
             // }
 
             link: function(scope, element, attrs, ctrl) {
-                console.log(ctrl);
+                scope.type = attrs.type;
                 scope.labelClean = textFilter.alphabetic(scope.label);
                 scope.template = currentScriptPath + 'types/' + attrs.type + '.html';
                 // scope.Form = angular.element(element).parents('form')[0].name;

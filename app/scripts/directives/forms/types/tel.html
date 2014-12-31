@@ -1,5 +1,7 @@
-<div>
-    <label>{{label}}</label>
-    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" ng-model="ngModel" />
-    <span class="error" ng-show="$error.required">Required!</span>
+<div class="form-element-wrapper form-{{type}}">
+	<label for="{{labelClean}}">{{label}}</label>
+	<input type="tel" name="{{labelClean}}" ng-pattern="/^[0-9]{3}(-?)[0-9]{3}(-?)[0-9]{4}$/" placeholder="xxx-xxx-xxxx" ng-model="ngModel" required />
+
+	<span class="label label-danger" ng-show="Form.{{labelClean}}.$error.required">Required!</span>
+	<span class="label label-danger" ng-show="Form.{{labelClean}}.$error.pattern">Not a valid number! ( e.g 416-555-5555 ) </span>
 </div>
