@@ -1,4 +1,5 @@
 'use strict';
+
 angular.module('contantsListApp').factory('contact/rest', function () {
     // Service logic
     // ...

@@ -1,7 +1,8 @@
+<a ui-sref="main.contact/add">New</a>
 <ul>
 	Search: <input ng-model="searchText">
 	<li ng-repeat="contact in contactsList | filter:searchText">
-		<a href="#contact/{{$index}}"><h3>{{contact.name}}</h3></a>
+		<a ui-sref="main.contact/details({id: $index})" ><h3>{{contact.name}}</h3></a>
 		<small>
 			{{contact.company_name}} 
 			{{contact.address}} - {{contact.city}}

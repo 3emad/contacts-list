@@ -1,4 +1,5 @@
 'use strict';
+
 angular.module('contantsListApp').service('ContactsListModel', function ContactGet($filter) {
     console.log('Called!');
     // sample data cleaned up is from http://www.briandunning.com/sample-data/

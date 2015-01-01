@@ -1,4 +1,5 @@
 'use strict';
+
 angular.module('contantsListApp', [
     'ngCookies',
     'ngResource',
@@ -28,6 +29,14 @@ angular.module('contantsListApp', [
         }
     }).state('main.contact/details', {
         url: 'contact/:id',
+        views: {
+            '@': {
+                templateUrl: 'views/contact/details.html',
+                controller: 'ContactDetailsCtrl'
+            }
+        }
+    }).state('main.contact/add', {
+        url: 'contact',
         views: {
             '@': {
                 templateUrl: 'views/contact/details.html',
