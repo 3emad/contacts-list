@@ -10,12 +10,15 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
-    fixmyjs = require("gulp-fixmyjs"),
+    fixmyjs = require('gulp-fixmyjs'),
     uncss = require('gulp-uncss-task'),
     del = require('del'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
-    karma = require('gulp-karma');
+    karma = require('gulp-karma'),
+    usemin = require('gulp-usemin'),
+    rev = require('gulp-rev'),
+    gutil = require('gulp-util');;
 
 // consider
 // https://www.npmjs.org/package/critical
@@ -107,9 +110,26 @@ gulp.task('images', function() {
         }));
 });
 
+gulp.task('build', function() {
+    // copy views over
+    gulp.src('app/views/**/*')
+        .pipe(gulp.dest('dist/views'))
+        .pipe(notify({
+            message: 'Partials task complete'
+        }));
+
+    gulp.src('./app/index.html')
+    .pipe(usemin({
+        css: [minifycss(), rev()],
+        //html: [minifyHtml({empty: true})],
+        js: [uglify(), rev()]
+    }))
+    .pipe(gulp.dest('dist/'));
+});
+
 gulp.task('clean', function(cb) {
     //del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
-    del('dist/*', cb)
+    del(['dist/assets/*',], cb);
 });
 
 gulp.task('default', ['clean'], function() {
@@ -137,4 +157,20 @@ gulp.task('watch', ['browser-sync'], function() {
     livereload.listen();
     // Watch any files in dist/, reload on change
     gulp.watch(['dist/**']).on('change', livereload.changed);
+});
+
+function startExpress(env) {
+    var express = require('express');
+    var app = express();
+    app.use(express.static(__dirname + '/' + env));
+    app.listen(8081);
+    gutil.log(gutil.colors.yellow('http://localhost:8081/'));
+}
+
+gulp.task('serve', function() {
+    startExpress('dist');
+});
+
+gulp.task('dev', function() {
+    startExpress('app');
 });

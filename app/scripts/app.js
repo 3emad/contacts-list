@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('contantsListApp', [
     'ngCookies',
     'ngResource',
@@ -20,26 +19,22 @@ angular.module('contantsListApp', [
         host: 'https://dummy.com/',
         service: 'ContactsListModelAPI'
     },
-    token:      'thisisasecrettoken',
-    activeModel:'Firebase',
+    token: 'thisisasecrettoken',
+    activeModel: 'Firebase',
     timeoutMessage: 1000
-}).config(function($stateProvider, $urlRouterProvider) {
-    $stateProvider
-    .state('main', {
+}).config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $stateProvider.state('main', {
         url: '/',
         views: {
             //'sideBar@': { templateUrl: 'views/components/sidebar.html', controller: 'SideBarCtrl' },
-            'header': {
-                templateUrl: 'views/components/header.html',
-            },
+            'header': { templateUrl: 'views/components/header.html' },
             '@': {
                 templateUrl: 'views/contact/list.html',
                 controller: 'ContactListCtrl',
                 controllerAs: 'ListCtrl'
             }
         }
-    })
-    .state('main.details', {
+    }).state('main.details', {
         url: 'contact/:id',
         views: {
             '@': {
@@ -59,4 +54,4 @@ angular.module('contantsListApp', [
         }
     });
     $urlRouterProvider.otherwise('/');
-});
+}]);
