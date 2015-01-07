@@ -44,7 +44,8 @@ $ gulp test
 ```
 
 ### Todo's
- - Write more tests and e2e protractor 
+ - Write more tests
+ - e2e protractor 
  - Implement angular Mateiral theme
  - Polymer
  - Angular 2.0

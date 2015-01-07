@@ -110,26 +110,26 @@ gulp.task('images', function() {
         }));
 });
 
+// FIXME this should be replaced by the actually default build task
 gulp.task('build', function() {
-    // copy views over
-    gulp.src('app/views/**/*')
-        .pipe(gulp.dest('dist/views'))
-        .pipe(notify({
-            message: 'Partials task complete'
-        }));
+    // run it and on callback, run the rest
+    gulp.start('clean',function(){
+        // copy views over
+        gulp.src('app/views/**/*')
+            .pipe(gulp.dest('dist/views'));
 
-    gulp.src('./app/index.html')
-    .pipe(usemin({
-        css: [minifycss(), rev()],
-        //html: [minifyHtml({empty: true})],
-        js: [uglify(), rev()]
-    }))
-    .pipe(gulp.dest('dist/'));
+        gulp.src('app/index.html')
+        .pipe(usemin({
+            css: [minifycss(), rev()],
+            js: [uglify(), rev()],
+        }))
+        .pipe(gulp.dest('dist/'));
+    });
 });
 
 gulp.task('clean', function(cb) {
     //del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
-    del(['dist/assets/*',], cb);
+    del(['dist/**',], cb);
 });
 
 gulp.task('default', ['clean'], function() {
@@ -167,7 +167,7 @@ function startExpress(env) {
     gutil.log(gutil.colors.yellow('http://localhost:8081/'));
 }
 
-gulp.task('serve', function() {
+gulp.task('serve', ['build'], function() {
     startExpress('dist');
 });
 
