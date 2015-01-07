@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Contact List</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -49,12 +49,11 @@
         a.src = g;
         m.parentNode.insertBefore(a, m)
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
     ga('create', 'UA-XXXXX-X');
     ga('send', 'pageview');
     </script>
 
-    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
     <!-- build:js scripts/plugins.js -->
@@ -78,18 +77,19 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/services/components/alerts.js"></script>
     <script src="scripts/controllers/contact/list.js"></script>
     <script src="scripts/controllers/contact/details.js"></script>
-    <script src="scripts/directives/tables/two-column.js"></script>
     <script src="scripts/directives/forms/element.js"></script>
     <script src="scripts/services/contact/api.js"></script>
-    <script src="scripts/services/contact/rest.js"></script>
-    <script src="scripts/services/contact/get.js"></script>
+    <script src="scripts/services/contact/firebase.js"></script>
     <!-- endbuild -->
 
 </body>

@@ -1,6 +1,13 @@
-<form name="detailsForm" ng-model-options="{ updateOn: 'submit' }" ng-submit="save()" novalidate>
-    <form-elem type="input" label="Name:" ng-model="contact.name"></form-elem>
-	<form-elem type="tel" label="Telephone:" ng-model="contact.phone"></form-elem>
-    <form-elem type="textarea" label="Address:" ng-model="contact.address"></form-elem>
-    <input name="submit" type="submit" value="save" />
+<a ui-sref="main">List</a>
+
+<div ng-if="message">
+	{{::message}}
+</div>
+
+<form name="detailsForm" ng-model-options="{ updateOn: 'submit', debounce: 300 }" ng-submit="DetailsCtrl.save(detailsForm.$invalid,contact,DetailsCtrl.ID)" novalidate>
+    <input-text label="Name:" ng-model="contact.name"></input-text>
+	<input-tel label="Phone:" ng-model="contact.phone"></input-tel>
+    <input-textarea label="Address:" ng-model="contact.address"></input-textarea>
+    <button type="submit">Save</button>
+    <button type="button" ng-click="DetailsCtrl.delete(DetailsCtrl.ID)">Delete</button>
 </form>

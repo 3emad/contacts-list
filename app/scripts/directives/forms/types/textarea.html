@@ -1,6 +1,8 @@
-<div class="form-element-wrapper form-{{type}}">
-	<label for="{{labelClean}}">{{label}}</label>
-	<textarea name="{{labelClean}}" ng-model="ngModel" required></textarea>
+<div class="form-element-wrapper form-{{::type}}">
+	<label for="{{::labelClean}}">{{::label}}</label>
+	<textarea name="{{::labelClean}}" ng-model="ngModel" required></textarea>
 
-	<span class="label label-danger" ng-show="Form.{{labelClean}}.$error.required">Required!</span>
+	<div ng-messages="form[labelClean].$error" ng-if="form.$submitted && form[labelClean].$invalid" class="label label-danger" ng-messages-multiple>
+		<div ng-message="required">You did not enter a {{::labelClean}}</div>
+	</div>
 </div>

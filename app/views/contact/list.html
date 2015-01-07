@@ -1,13 +1,19 @@
-<a ui-sref="main.contact/add">New</a>
-<ul>
+<a ui-sref="main.add">New</a>
+<div>
 	Search: <input ng-model="searchText">
-	<li ng-repeat="contact in contactsList | filter:searchText">
-		<a ui-sref="main.contact/details({id: $index})" ><h3>{{contact.name}}</h3></a>
-		<small>
-			{{contact.company_name}} 
-			{{contact.address}} - {{contact.city}}
-			{{contact.province}} - {{contact.postal}}
-			{{contact.country}}
-		</small>
-	</li>
-</ul>
+	<div ng-if="loading">loading...</div>
+	<ul ng-if="!loading">
+		<li ng-repeat="contact in contactsList | filter:searchText">
+			<div>
+				<a ui-sref="main.details({id: contact.$id})" >
+					<h3>{{::contact.name}}</h3>
+				</a>
+				<small>
+					<label class="label label-info">{{::contact.phone}}</label>
+					{{::contact.company_name}} 
+					{{::contact.address}}
+				</small>
+			</div>
+		</li>
+	</ul>
+</div>

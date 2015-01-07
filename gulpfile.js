@@ -14,7 +14,8 @@ var gulp = require('gulp'),
     uncss = require('gulp-uncss-task'),
     del = require('del'),
     browserSync = require('browser-sync'),
-    reload = browserSync.reload;
+    reload = browserSync.reload,
+    karma = require('gulp-karma');
 
 // consider
 // https://www.npmjs.org/package/critical
@@ -34,6 +35,23 @@ gulp.task('browser-sync', function() {
         open: false,
         host: "192.168.2.21",
         port: 8080
+    });
+});
+
+// var testFiles = ['app/**/*.js','test/**/*.js'];
+var testFiles = [
+    //'test/spec/controllers/**/*.js'
+];
+gulp.task('test', function() {
+  // Be sure to return the stream
+  return gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
     });
 });
 
@@ -98,13 +116,21 @@ gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
 });
 
+gulp.task('test', function() {
+  gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'watch'
+    }));
+});
+
 gulp.task('watch', ['browser-sync'], function() {
     // Watch .scss files
     gulp.watch('app/styles/**/*.scss', ['styles']);
     // Watch .js files
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     // Watch .html files
-    gulp.watch('app/**/*.html');
+    gulp.watch('app/views/**/*.html');
     // Watch image files
     gulp.watch('app/images/**/*', ['images']);
     // Create LiveReload server
