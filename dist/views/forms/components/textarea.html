@@ -1,0 +1,7 @@
+<div class="form-element-wrapper form-{{::type}}">
+	<md-text-float class="long" label="{{::label}}" name="{{::labelClean}}" ng-model="ngModel" required />
+
+	<div ng-messages="form[labelClean].$error" ng-if="form.$submitted && form[labelClean].$invalid" class="label label-danger" ng-messages-multiple>
+		<div ng-message="required">You did not enter a {{::labelClean}}</div>
+	</div>
+</div>

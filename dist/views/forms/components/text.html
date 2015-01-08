@@ -1,0 +1,9 @@
+<div class="form-element-wrapper form-{{::type}}">
+	<md-text-float label="{{::label}}" name="{{::labelClean}}" type="text" ng-model="ngModel" required ng-minlength="4" ng-maxlength="25"></md-text-float>
+
+	<div ng-messages="form[labelClean].$error" ng-if="form.$submitted && form[labelClean].$invalid" class="label label-danger">
+	    <div ng-message="required">You did not enter a {{::labelClean}}</div>
+	    <div ng-message="minlength">Your {{::labelClean}} is too short</div>
+	    <div ng-message="maxlength">Your {{::labelClean}} is too long</div>
+	</div>
+</div>

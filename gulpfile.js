@@ -18,7 +18,9 @@ var gulp = require('gulp'),
     karma = require('gulp-karma'),
     usemin = require('gulp-usemin'),
     rev = require('gulp-rev'),
-    gutil = require('gulp-util');;
+    gutil = require('gulp-util'),
+    subtree = require('gulp-subtree'),
+    clean = require('gulp-clean');
 
 // consider
 // https://www.npmjs.org/package/critical
@@ -131,6 +133,12 @@ gulp.task('build', function() {
         }))
         .pipe(gulp.dest('dist/'));
     });
+});
+
+gulp.task('deploy', ['build'], function () {
+    return gulp.src('dist')
+        .pipe(subtree())
+        .pipe(clean());
 });
 
 gulp.task('clean', function(cb) {

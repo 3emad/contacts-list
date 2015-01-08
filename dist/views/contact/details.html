@@ -1,0 +1,24 @@
+<md-subheader class="md-primary">
+	<div layout="row" layout-align="space-between start">
+		<div layout="row">
+			<div flex></div>
+			<h2 flex="89">Editing</h2>
+		</div>
+		<md-button class="md-raised md-primary" ui-sref="main">List</md-button>
+	</div>
+</md-subheader>
+
+<md-divider></md-divider>
+
+<div layout="row" layout-fill layout-padding layout-margin>
+	<div flex></div>
+	<div flex="95">
+		<form layout-align="center start" name="detailsForm" ng-model-options="{ updateOn: 'submit', debounce: 300 }" ng-submit="DetailsCtrl.save(detailsForm.$invalid,contact,DetailsCtrl.ID)" flex novalidate>
+		    <input-text label="Name:" ng-model="contact.name"></input-text>
+			<input-tel label="Phone:" ng-model="contact.phone"></input-tel>
+		    <input-textarea label="Address:" ng-model="contact.address"></input-textarea>
+		    <md-button type="submit" class="md-raised md-primary">Save</md-button>
+		    <md-button type="button" class="md-raised md-warn" ng-click="DetailsCtrl.delete(DetailsCtrl.ID)">Delete</md-button>
+		</form>
+	</div>
+</div>
