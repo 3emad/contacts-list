@@ -18,7 +18,7 @@ $ npm i -g gulp
 ```
 run the rest of installers
 ```sh
-$ npm install & bower install
+$ npm install && bower install
 ```
 
 ### Usage
