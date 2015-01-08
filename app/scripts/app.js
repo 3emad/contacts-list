@@ -12,7 +12,7 @@ angular.module('contantsListApp', [
     // cloud development
     Firebase: {
         host: 'https://vivid-fire-1462.firebaseio.com/',
-        secret: 'GqX862HRsBGG1B7WzUOSpT3gUt0O3atmDqiJ3R2u',
+        secret: 'GqX862HRsBGG1B7WzUOSpT3gUt0O3atmDqiJ3R2u', // please don't misuse it :)
         service: 'ContactsListModel'
     },
     // production
