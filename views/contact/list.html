@@ -1,0 +1,45 @@
+<div ng-if="loading" layout="row" layout-sm="column" layout-align="center center" layout-margin>
+	<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<div ng-if="!loading">
+	<md-subheader class="md-primary">
+		<div layout="row" layout-align="space-between start">
+			<!-- TODO: should be changed to directive -->
+			<md-text-float label="Search" type="search" ng-model="$parent.searchText"></md-text-float>
+			<div>
+				<md-button ng-disabled="pagination.currentPage() === pagination.firstPage()" ng-click="pagination.first()">First</md-button>
+				<md-button ng-disabled="pagination.currentPage() === pagination.firstPage()" ng-click="pagination.prev()">Prev</md-button>
+				<md-button ng-disabled="pagination.currentPage() === pagination.lastPage()" ng-click="pagination.next()">Next</md-button>
+				<md-button ng-disabled="pagination.currentPage() === pagination.lastPage()" ng-click="pagination.last()">Last</md-button>
+
+				<div>
+					<md-progress-linear md-mode="determinate" ng-value="pagerProgress"></md-progress-linear>
+				</div>
+			</div>
+			<!-- /TODO -->
+			<md-button class="md-raised md-primary" ui-sref="main.add">New</md-button>
+		</div>
+	</md-subheader>
+
+
+	<md-list layout="column">
+		<md-item ng-repeat="contact in filteredContacts">
+			<md-item-content ui-sref="main.details({id: contact.$id})">
+				<!-- <md-whiteframe class="md-whiteframe-z2" layout layout-align="center center" layout="column" layout-fill> -->
+					<div class="md-tile-left">
+	        			<img class="face" ng-src="http://placekitten.com/g/24{{($index+10)%10}}/24{{($index+10)%10}}/" alt="{{contact.name}}" />
+	        		</div>
+	        		<div class="md-tile-content">
+						<h3>{{contact.name}}</h3>
+						</h4>{{contact.phone}}</h4>
+						<p>
+							<small>{{contact.address}}</small>
+						</p>
+					</div>
+				<!-- </md-whiteframe> -->
+			</md-item-content>
+			<md-divider ng-if="!$last"></md-divider>
+		</md-item>
+	</md-list>
+</div>
