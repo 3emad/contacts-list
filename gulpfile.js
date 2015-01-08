@@ -1,5 +1,5 @@
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'),
+    sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
@@ -33,11 +33,11 @@ function handleError(err) {
 gulp.task('browser-sync', function() {
     browserSync({
         server: {
-            baseDir: "app"
+            baseDir: 'app'
         },
         open: false,
-        host: "192.168.2.21",
-        port: 8080
+        host: 'localhost',
+        port: 8081
     });
 });
 
@@ -58,18 +58,23 @@ gulp.task('test', function() {
     });
 });
 
-gulp.task('styles', function() {
+gulp.task('sass', function() {
     return gulp.src('app/styles/*.scss')
-        .pipe(sass({
-            style: 'expanded'
-        }))
-        .on('error', handleError)
+        .pipe(sass())
+        .pipe(gulp.dest('app/styles'));
+});
+
+// ref http://help.nitrous.io/setting-up-gulp-with-livereload-and-sass/
+gulp.task('styles', function() {
+    gulp.start('sass', function() {
+        gulp.src('app/styles/*.css')
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(gulp.dest('app/styles'))
-        .pipe(uncss({
-            html: "app/**/*.html" // post processed scss html uncs
-        }))
-        //.pipe(gulp.dest('dist/assets/css'))
+        // breaks the piping
+        // .pipe(uncss({
+        //     html: 'app/**/*.html' // post processed scss html uncs
+        // }))
+        .pipe(gulp.dest('dist/assets/css'))
         .pipe(rename({
             suffix: '.min'
         }))
@@ -77,13 +82,14 @@ gulp.task('styles', function() {
         .pipe(gulp.dest('dist/assets/css'))
         .pipe(notify({
             message: 'Styles task complete'
-        }));
+        }))
+    });
 });
 
 gulp.task('scripts', function() {
     return gulp.src('app/scripts/**/*.js')
         //.pipe(fixmyjs()) // fix my js
-        .pipe(gulp.dest("app/scripts"))
+        .pipe(gulp.dest('app/scripts'))
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
         .pipe(concat('main.js'))
@@ -113,7 +119,7 @@ gulp.task('images', function() {
 // FIXME this should be replaced by the actually default build task
 gulp.task('build', function() {
     // run it and on callback, run the rest
-    gulp.start('clean',function(){
+    gulp.start('clean', function(){
         // copy views over
         gulp.src('app/views/**/*')
             .pipe(gulp.dest('dist/views'));
@@ -129,7 +135,7 @@ gulp.task('build', function() {
 
 gulp.task('clean', function(cb) {
     //del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
-    del(['dist/**',], cb);
+    del(['dist/**'], cb);
 });
 
 gulp.task('default', ['clean'], function() {
@@ -146,7 +152,7 @@ gulp.task('test', function() {
 
 gulp.task('watch', ['browser-sync'], function() {
     // Watch .scss files
-    gulp.watch('app/styles/**/*.scss', ['styles']);
+    gulp.watch('app/styles/*.scss', ['styles']);
     // Watch .js files
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     // Watch .html files
@@ -156,7 +162,7 @@ gulp.task('watch', ['browser-sync'], function() {
     // Create LiveReload server
     livereload.listen();
     // Watch any files in dist/, reload on change
-    gulp.watch(['dist/**']).on('change', livereload.changed);
+    gulp.watch(['app/**', 'dist/**']).on('change', livereload.changed);
 });
 
 function startExpress(env) {

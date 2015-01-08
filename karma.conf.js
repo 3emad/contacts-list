@@ -16,7 +16,9 @@ module.exports = function(config) {
           'app/bower_components/angular-mocks/angular-mocks.js',
           'app/bower_components/angular-ui-router/release/angular-ui-router.js',
           'app/bower_components/angular-*/*.min.js',
+          'app/bower_components/hammerjs/hammer.js',
           'app/bower_components/firebase/firebase.js',
+          'app/bower_components/underscore/underscore.js',
           'app/bower_components/angularfire/dist/angularfire.js',
 
           // FIXME move it to test bower folder
@@ -35,7 +37,6 @@ module.exports = function(config) {
           'app/scripts/app.js',
           'app/scripts/services/**/*.js',
           'app/scripts/directives/**/*.js',
-          'app/scripts/directives/**/*.html',
           'app/scripts/controllers/**/*.js',
           'app/views/**/*.html',
           //'test/e2e/**/*.js',

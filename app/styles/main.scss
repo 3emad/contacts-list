@@ -1,25 +1,43 @@
-$font-stack:    Helvetica, sans-serif;
 $primary-color: #333333;
+$lightHighlight: #DEDEDE;
+$headerSize: 64px;
+$headerSizeFallback: 700px;
 
 body {
-    background: $font-stack;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: $primary-color;
+    height: 100%;
+    > md-content{
+        height: 700px; /* fallback if needed */
+        // height: calc(100% - 96px); // this was for action footer
+        height: calc(100% - #{$headerSize});
+    }
 }
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    font-size: 18px;
-    font-weight: 200;
-    line-height: 30px;
-    background-color: #eee;
-    border-radius: 6px;
-    padding: 60px;
+.face{
+  border-radius: 60px;
+  border: 1px solid #ddd;
+  max-width: 90px;
+  max-height: 90px;
+  margin: 16px;
 }
 
-.hero-unit h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+// workaround for angular material bugs
+.md-subheader .md-subheader-content{
+    // hack to solve positioning of inputs
+    md-input-group{
+        margin-top: -14px;
+        margin-bottom: -6px;
+    }
+    // none clickable issue
+    > *{
+        position: relative;
+        z-index: 10;
+    }
+}
+
+// use it for item list that are clickable
+md-item-content[ui-sref]:hover{
+    background: $lightHighlight;
+    cursor: pointer;
 }

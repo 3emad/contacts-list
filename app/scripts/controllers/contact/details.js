@@ -36,17 +36,14 @@ angular.module('contantsListApp').controller('ContactDetailsCtrl', ['CONFIG', '$
         ContactsListModelAPI.remove(ID).then(function () {
             delete $scope.contact;
             // remove scope
-            alertService.emit('headerAlert', 'Deleted Successfully');
+            _this.message('Deleted Successfully');
             $state.go('main');
         }, function (response) {
             _this.message(response.message);
         });
     };
     _this.message = function message(msg) {
-        $scope.message = msg;
-        $timeout(function timeoutMessage() {
-            $scope.message = false;
-        }, CONFIG.timeoutMessage);
+        alertService.emit('headerAlert', msg);
     };
     // sockets already cache it on the frame by firebase
     // TODO API service needs caching mechansim in local storage

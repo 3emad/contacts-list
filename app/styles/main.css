@@ -1,22 +1,26 @@
 body {
-  background: Helvetica, sans-serif;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333333;
-}
+  height: 100%; }
+  body > md-content {
+    height: 700px;
+    /* fallback if needed */
+    height: calc(100% - 64px); }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-}
+.face {
+  border-radius: 60px;
+  border: 1px solid #ddd;
+  max-width: 90px;
+  max-height: 90px;
+  margin: 16px; }
 
-.hero-unit h1 {
-  font-size: 60px;
-  line-height: 1;
-  letter-spacing: -1px;
-}
+.md-subheader .md-subheader-content md-input-group {
+  margin-top: -14px;
+  margin-bottom: -6px; }
+.md-subheader .md-subheader-content > * {
+  position: relative;
+  z-index: 10; }
+
+md-item-content[ui-sref]:hover {
+  background: #DEDEDE;
+  cursor: pointer; }

@@ -1,6 +1,5 @@
 <div class="form-element-wrapper form-{{::type}}">
-	<label for="{{::labelClean}}">{{::label}}</label>
-	<input name="{{::labelClean}}" type="tel" ng-pattern="/^[0-9]{3}(-?)[0-9]{3}(-?)[0-9]{4}$/" placeholder="xxx-xxx-xxxx" ng-model="ngModel" required />
+	<md-text-float label="{{::label}}" name="{{::labelClean}}" type="tel" ng-pattern="/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/" placeholder="xxx-xxx-xxxx" ng-model="ngModel" required />
 
 	<div ng-messages="form[labelClean].$error" ng-if="form.$submitted && form[labelClean].$invalid" class="label label-danger" ng-messages-multiple>
 	    <div ng-message="required">You did not enter a {{::labelClean}}</div>

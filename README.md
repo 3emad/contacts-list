@@ -43,9 +43,12 @@ And Another tab
 $ gulp test
 ```
 
+### Fixme
+ - Validation [md-text-float bug](https://github.com/angular/material/issues/372) ( which fails 2 tests )
+
 ### Todo's
  - Write more tests
- - e2e protractor 
+ - e2e protractor
  - Implement angular Mateiral theme
  - Polymer
  - Angular 2.0

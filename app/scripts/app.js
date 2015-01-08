@@ -6,7 +6,8 @@ angular.module('contantsListApp', [
     'ui.router',
     'contantsListDirectives',
     'firebase',
-    'ngMessages'
+    'ngMessages',
+    'ngMaterial'
 ]).constant('CONFIG', {
     // cloud development
     Firebase: {
@@ -28,16 +29,17 @@ angular.module('contantsListApp', [
         views: {
             //'sideBar@': { templateUrl: 'views/components/sidebar.html', controller: 'SideBarCtrl' },
             'header': { templateUrl: 'views/components/header.html' },
-            '@': {
+            'content@': {
                 templateUrl: 'views/contact/list.html',
                 controller: 'ContactListCtrl',
                 controllerAs: 'ListCtrl'
-            }
+            },
+            //'actions': { templateUrl: 'views/components/actions.html' }
         }
     }).state('main.details', {
         url: 'contact/:id',
         views: {
-            '@': {
+            'content@': {
                 templateUrl: 'views/contact/details.html',
                 controller: 'ContactDetailsCtrl',
                 controllerAs: 'DetailsCtrl'
@@ -46,7 +48,7 @@ angular.module('contantsListApp', [
     }).state('main.add', {
         url: 'contact',
         views: {
-            '@': {
+            'content@': {
                 templateUrl: 'views/contact/details.html',
                 controller: 'ContactDetailsCtrl',
                 controllerAs: 'DetailsCtrl'
